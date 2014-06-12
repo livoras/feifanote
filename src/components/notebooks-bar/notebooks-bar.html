@@ -1,3 +1,11 @@
 <div class="notebooks-bar">
   <div class="bar-title">笔记本</div>
+  <ul class="notebooks">
+    <li class="notebook"
+        v-repeat="notebooks" 
+        v-on="click: activeNotebook(this)"
+        v-class="active: activedNotebook && activedNotebook === this">
+      {{name}}
+    </li>
+  </ul>
 </div>
