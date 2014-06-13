@@ -1,3 +1,8 @@
 <div class="pages-bar">
   <div class="bar-title">笔记</div>
+  <ul class="pages">
+    <li class="page" v-repeat="activedNotebook.pages">
+      第{{$index}}页: {{content.slice(0, 10)}}
+    </li>
+  </ul>
 </div>

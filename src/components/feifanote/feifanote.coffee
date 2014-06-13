@@ -1,11 +1,10 @@
 feifanoteTpl = require './feifanote.html'
+mocks = require './mocks.coffee'
 
 Vue.component 'f-feifanote',
   template: feifanoteTpl
 
   data:
-    activedNotebook: null
-
-  created: ->
-    @$on 'notebooks-bar:actived', (notebook)=>
-      @activedNotebook = notebook
+    appStatus: 
+      activedNotebook: {}
+      notebooks: mocks.notebooks

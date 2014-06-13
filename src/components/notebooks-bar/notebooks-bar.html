@@ -4,7 +4,7 @@
     <li class="notebook"
         v-repeat="notebooks" 
         v-on="click: activeNotebook(this)"
-        v-class="active: activedNotebook && activedNotebook === this">
+        v-class="active: activedNotebook && activedNotebook === this.$data">
       {{name}}
     </li>
   </ul>
