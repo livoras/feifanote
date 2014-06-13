@@ -1,7 +1,10 @@
 <div class="pages-bar">
   <div class="bar-title">笔记</div>
-  <ul class="pages">
-    <li class="page" v-repeat="activedNotebook.pages">
+  <ul class="pages items">
+    <li class="page item" 
+        v-repeat="activedNotebook.pages"
+        v-class="active: activedNotebook.activedPageIndex === $index"
+        v-on="click: activePage($index)">
       第{{$index}}页: {{content.slice(0, 10)}}
     </li>
   </ul>

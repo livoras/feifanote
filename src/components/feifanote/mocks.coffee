@@ -1,7 +1,7 @@
 makeNote = (name)->
   {
     name: name 
-    activedPageIndex: Math.floor(Math.random * 30) 
+    activedPageIndex: Math.floor(Math.random() * 30) 
     pages: (makePage() for i in [1..30])
   }
 
