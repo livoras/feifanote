@@ -5,7 +5,7 @@
         v-repeat="activedNotebook.pages"
         v-class="active: activedNotebook.activedPageIndex === $index"
         v-on="click: activePage($index)">
-      第{{$index}}页: {{content.slice(0, 10)}}
+      第{{$index + 1}}页: {{content.slice(0, 10)}}
     </li>
   </ul>
 </div>
