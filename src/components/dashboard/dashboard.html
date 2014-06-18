@@ -1,18 +1,21 @@
 <div class="dashboard">
-  <ul class="notebooks items">
-    <li class="item" 
-      v-repeat="notebooks"
-      v-class="active: activeNotebook == this.$data"
-      v-on="click: activateNotebook(this)">
-      {{name}}
-    </li>
-  </ul>
   <ul class="pages items">
     <li class="item" 
       v-repeat="activeNotebook.pages"
       v-class="active: activeNotebook.activePageIndex == $index"
       v-on="click: activatePage($index)">
-      {{$index + ': ' + content.slice(0, 20)}}
+      <p>
+      {{$index + '. ' + content.slice(0, 20)}}
+      </p>
+    </li>
+  </ul>
+  <ul class="notebooks items">
+    <li class="notebook item" 
+      v-repeat="notebooks"
+      v-class="active: activeNotebook == this.$data"
+      v-on="click: activateNotebook(this)">
+      <div class="decoration"></div>
+      <p>{{name}}</p>
     </li>
   </ul>
 </div>
