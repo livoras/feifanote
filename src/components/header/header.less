@@ -1,17 +1,19 @@
 div.header {
   position: fixed;
   top: 0;
-  height: 30px;
+  @height: 40px;
+  height: @height;
   width: 100%;
-  background-color: #444;
-  line-height: 30px;
+  background-color: #fff;
+  line-height: @height;
   font-size: 12px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
   div.logo {
     width: 50px;
     float: left;
     margin-left: 30px;
     a {
-      color: #f3f3f3;
+      color: #34495e;
       text-decoration: none;
     }
   }
@@ -25,24 +27,22 @@ div.header {
       outline: none;
       width: 30%;
       padding: 0px 5px;
-      border: none;
       height: 23px;
-      background-color: #eee;
-      &:focus {
-        background-color: #fff;
-      }
+      background-color: #fff;
+      border: 1px solid #eee;
+      font-size: 12px;
     }
     div.right-actions {
       width: 50%;
       float: right;
-      color: #fff;
+      color: #444;
       div.action {
         float: right;
         padding: 0 15px;
         margin-right: 2px;
-        background-color: #555;
+        // background-color: #555;
         &:hover {
-          background-color: #666;
+          // background-color: #666;
           cursor: pointer;
         }
       }
