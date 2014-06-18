@@ -1,4 +1,7 @@
-<div class="dashboard">
+<div class="dashboard" 
+     v-show="dashboardActive" 
+     v-transition
+     v-on="click: clickHandler">
   <ul class="pages items">
     <li class="item" 
       v-repeat="activeNotebook.pages"

@@ -7,3 +7,5 @@ Vue.component 'f-dashboard',
       @activeNotebook = notebook.$data
     activatePage: (activePageIndex)->
       @activeNotebook.activePageIndex = activePageIndex
+    clickHandler: (event)->
+      event.stopPropagation()

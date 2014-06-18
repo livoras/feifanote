@@ -1,4 +1,6 @@
+@import "../../common/common.less";
 div.dashboard {
+  .transition();
   position: fixed;
   bottom: 0;
   overflow: hidden;
@@ -43,4 +45,9 @@ div.dashboard {
       }
     }
   }
+}
+
+div.dashboard.v-enter, 
+div.dashboard.v-leave {
+  opacity: 0;
 }

@@ -6,6 +6,11 @@ Vue.component 'f-feifanote',
 
   data:
     appStatus: 
+      dashboardActive: false
       user: mocks.user
       activeNotebook: mocks.activeNotebook
       notebooks: mocks.notebooks
+  methods:
+    clickHandler: ->
+      if @appStatus.dashboardActive
+        @appStatus.dashboardActive = off
