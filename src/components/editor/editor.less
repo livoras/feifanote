@@ -1,17 +1,19 @@
 div.editor {
   width: 60%;
   margin:50px auto;
+  margin-bottom: 0px;
   div.content {
     box-shadow: 0 0 15px #e6e6e6;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 95%;
-    height: 966px;
-    padding: 10px;
+    padding: 50px;
+    @height: 966px;
+    height: @height;
     textarea {
-      width: 100%;
       height: 100%;
+      width: 100%;
       border: none;
       resize: none;
       outline: none;
