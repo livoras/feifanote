@@ -11,5 +11,6 @@ makePage = ->
 names = ['Math', 'English', 'Database', 'Python', 'Jerry', 'JavaScript', 'NodeJS', 'PHP', 'Livoras']
 notebooks = (makeNote(name) for name in names)
 activeNotebook = notebooks[Math.floor(Math.random() * notebooks.length)]
+user = {id: 1, username: "Livoras", email: "me@livoras.com"}
 
-module.exports = {notebooks, activeNotebook}
+module.exports = {notebooks, activeNotebook, user}
