@@ -22,13 +22,22 @@ div.bar-title {
 }
 
 ul.items {
-  margin-top: 10px;
-  margin-left: 15px;
+  overflow: hidden;
+  height: 170px;
   li.item {
-    padding: 5px;
+    border: 1px solid #999;
+    float: left;
+    margin: 15px 0px 20px 15px;
+    border-radius: 6px;
+    padding: 20px;
+    width: 85px;
+    height: 110px;
+    word-wrap: break-word;
+    background-color: #fff;
+    opacity: 0.8;
     &:hover, &.active {
-      background-color: #f5f5f5;
       cursor: pointer;
+      opacity: 1;
     }
   }
 }

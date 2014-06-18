@@ -6,5 +6,5 @@ Vue.component 'f-feifanote',
 
   data:
     appStatus: 
-      activedNotebook: mocks.activedNotebook
+      activeNotebook: mocks.activeNotebook
       notebooks: mocks.notebooks

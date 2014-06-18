@@ -5,7 +5,7 @@ Vue.component 'f-editor',
   computed:
     content:
       $get: ->
-        @activedNotebook.pages[@activedNotebook.activedPageIndex].content
+        @activeNotebook.pages[@activeNotebook.activePageIndex].content
         
       $set: (value)->
-        @activedNotebook.pages[@activedNotebook.activedPageIndex].content = value
+        @activeNotebook.pages[@activeNotebook.activePageIndex].content = value

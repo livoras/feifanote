@@ -1,7 +1,7 @@
 makeNote = (name)->
   {
     name: name 
-    activedPageIndex: Math.floor(Math.random() * 30) 
+    activePageIndex: Math.floor(Math.random() * 30) 
     pages: (makePage() for i in [1..30])
   }
 
@@ -10,6 +10,6 @@ makePage = ->
 
 names = ['Math', 'English', 'Database', 'Python', 'Jerry', 'JavaScript', 'NodeJS', 'PHP', 'Livoras']
 notebooks = (makeNote(name) for name in names)
-activedNotebook = notebooks[Math.floor(Math.random() * notebooks.length)]
+activeNotebook = notebooks[Math.floor(Math.random() * notebooks.length)]
 
-module.exports = {notebooks, activedNotebook}
+module.exports = {notebooks, activeNotebook}
