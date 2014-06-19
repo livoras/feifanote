@@ -1,5 +1,4 @@
 feifanoteTpl = require './feifanote.html'
-mocks = require './mocks.coffee'
 {ajax, eventbus} = wuyinote.common
 
 Vue.component 'f-feifanote',
@@ -9,8 +8,8 @@ Vue.component 'f-feifanote',
     appStatus: 
       dashboardActive: false
       user: {}
-      activeNotebook: mocks.activeNotebook
-      notebooks: mocks.notebooks
+      activeNotebook: null
+      notebooks: null
   methods:
     clickHandler: ->
       if @appStatus.dashboardActive
@@ -20,15 +19,28 @@ Vue.component 'f-feifanote',
     watchProperties @
     listenShortCutToggleDashboard @
     loadNotebooks @
+    initActive @
+
+initActive = (vm)->
+  if vm.appStatus.user.active_notebook_id == -1
+    createNewNotebook (notebook)->
+      vm.appStatus.notebooks.append notebook
+      vm.appStatus.activeNotebook = notebook
+
+createNewNotebook = (callback)->
+
+
+createNewPage = (notebook, callback)->
+
 
 watchProperties = (vm)->
   vm.$watch "appStatus.activeNotebook", (activeNotebook)->
-    if not activeNotebook.pages
+    if activeNotebook and not activeNotebook.pages
       activeNotebook.pages = []
       loadPages activeNotebook
 
 loadPages = (activeNotebook)->      
-  console.log activeNotebook
+  if not activeNotebook.id then return
   ajax
     url: "/notebooks/#{activeNotebook.id}"
     type: "GET"
@@ -37,7 +49,6 @@ loadPages = (activeNotebook)->
       activeNotebook.pages = pages
     error: (msg, status)->
       # TODO
-
 
 listenShortCutToggleDashboard = (vm)->    
     document.addEventListener "keydown", (event)=>
@@ -52,4 +63,5 @@ loadNotebooks = (vm)->
       appStatus = vm.appStatus
       currentUser = appStatus.user
       appStatus.notebooks = data.notebooks
-      appStatus.activeNotebook = data.notebooks[currentUser.active_notebook_id]
+      if currentUser.active_notebook_id
+        appStatus.activeNotebook = data.notebooks[currentUser.active_notebook_id]

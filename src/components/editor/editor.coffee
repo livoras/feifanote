@@ -5,9 +5,11 @@ Vue.component 'f-editor',
   computed:
     content:
       $get: ->
-        if @activeNotebook.pages
-          @activeNotebook.pages[@activeNotebook.activePageIndex].content
+        if @activeNotebook and @activeNotebook.pages
+          if @activeNotebook.active_page_index
+            @activeNotebook.pages[@activeNotebook.active_page_index].content
         
       $set: (value)->
-        if @activeNotebook.pages
-          @activeNotebook.pages[@activeNotebook.activePageIndex].content = value
+        if @activeNotebook and @activeNotebook.pages
+          if @activeNotebook.active_page_index
+            @activeNotebook.pages[@activeNotebook.active_page_index].content = value

@@ -3,9 +3,12 @@
      v-transition
      v-on="click: clickHandler">
   <ul class="pages items">
+    <li class="item" v-show="user.active_notebook_id != -1">
+      <p>新增笔记</p>
+    </li>
     <li class="item" 
       v-repeat="activeNotebook.pages"
-      v-class="active: activeNotebook.activePageIndex == $index"
+      v-class="active: activeNotebook.active_page_index == $index + 1"
       v-on="click: activatePage($index)">
       <p>
       {{$index + '. ' + content.slice(0, 20)}}
@@ -13,6 +16,10 @@
     </li>
   </ul>
   <ul class="notebooks items">
+    <li class="notebook item">
+      <div class="decoration"></div>
+      <p>新增笔记本</p>
+    </li>
     <li class="notebook item" 
       v-repeat="notebooks"
       v-class="active: activeNotebook == this.$data"
