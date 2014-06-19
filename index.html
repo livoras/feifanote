@@ -9,7 +9,7 @@
 
 <body>
   <div id="container">
-    <f-feifanote></f-feifanote>
+    <div v-view="currentView"></div>
   </div>
 </body>
 
@@ -22,8 +22,14 @@
 <script src="bin/js/components/footer.js"></script>
 <script src="bin/js/components/dashboard.js"></script>
 <script src="bin/js/components/header.js"></script>
+<script src="bin/js/components/entry.js"></script>
 <!--<script src="bin/js/components/{name}.js"></script>-->
 <!--components end-->
 
-<script>new Vue({el: '#container'})</script>
+<script>
+var initData = {
+  is_login: false
+}
+</script>
+<script src="/bin/js/main.js"></script>
 </html>
