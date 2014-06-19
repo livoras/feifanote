@@ -9,10 +9,21 @@
 
 <body>
   <div id="container">
-    <f-feifanote></f-feifanote>
+    <div v-view="currentView"></div>
   </div>
 </body>
 
+<script>
+var initData = {
+  is_login: false,
+  user: {
+    active_notebook_id: 2, 
+    email: "fuckyou@163.com", 
+    id: 8, 
+    is_vip: false, 
+    username: "fuckyou"
+  } 
+}
+</script>
 <script src="dist/build.min.js"></script>
-<script>new Vue({el: '#container'})</script>
 </html>
