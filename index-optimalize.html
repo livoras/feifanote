@@ -14,16 +14,7 @@
 </body>
 
 <script>
-var initData = {
-  is_login: false,
-  user: {
-    active_notebook_id: 2, 
-    email: "fuckyou@163.com", 
-    id: 8, 
-    is_vip: false, 
-    username: "fuckyou"
-  } 
-}
+var initData = JSON.parse('{{init_data|safe}}')
 </script>
 <script src="dist/build.min.js"></script>
 </html>
