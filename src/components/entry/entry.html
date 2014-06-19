@@ -11,7 +11,10 @@
     </div>
 
     <div class="forms">
-      <div class="signup-form form">
+
+      <div class="signup-form form" 
+           v-show="signupFormShow"
+           v-transition>
         <label>
           <span class="key">邮件</span> 
           <input type="email" placeholder="me@example.com">
@@ -22,11 +25,31 @@
         </label>
         <label>
           <span class="key">密码</span>
-          <input type="password" placeholder="6~40 位密码">
+          <input type="password" placeholder="6~30 位密码">
         </label>
         <button>马上注册</button>
-        <a class="change-to-login" href="#">已有账号，直接登陆 >></a>
+        <a class="router" 
+           href="#"
+           v-on="click: signupFormShow = false">已有账号，直接登陆 >></a>
       </div>
+
+      <div class="login-form form" 
+           v-show="!signupFormShow"
+           v-transition>
+        <label>
+          <span class="key">邮件</span> 
+          <input type="email" placeholder="me@example.com">
+        </label>
+        <label>
+          <span class="key">密码</span>
+          <input type="password" placeholder="6~30 位密码">
+        </label>
+        <a class="router" 
+           href="#" 
+           v-on="click: signupFormShow = true"><< 返回注册</a>
+        <button>登陆</button>
+      </div>
+
     </div>
   </div>
 

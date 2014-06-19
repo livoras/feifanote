@@ -19,17 +19,22 @@ div.entry {
     overflow: hidden;
   }
   div.text {
+    min-width: 330px;
     width: 49%;
     float: left;
     border-right: 1px solid #eee;
   }
   div.forms {
     height: 100%;
-    width: 50%;
+    width: 40%;
     float: right;
+    overflow: hidden;
+    position: relative;
+    margin-right: 5%;
     div.form {
-      width: 80%;
+      .transition();
       margin: 0 auto;
+      position: absolute;
       label {
         margin-top: 5px;
         margin-bottom: 10px;
@@ -46,6 +51,7 @@ div.entry {
         }
       }
       button {
+        .transition();
         margin-top: 10px;
         padding: 0 10px;
         border: 1px solid #d1d1d1;
@@ -57,9 +63,15 @@ div.entry {
           background-color: #fff;
         }
       }
-      a.change-to-login {
+      a.router {
         font-size: 12px;
         color: #666;
+      }
+      &.login-form {
+        margin-top: 40px;
+      }
+      &.v-enter, &.v-leave {
+        opacity: 0;
       }
     }
   } 
