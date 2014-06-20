@@ -3,7 +3,9 @@
      v-transition
      v-on="click: clickHandler">
   <ul class="pages items">
-    <li class="item" v-show="user.active_notebook_id != -1">
+    <li class="item" 
+        v-show="user.active_notebook_id != -1"
+        v-on="click: createNewPage">
       <p>新增笔记</p>
     </li>
     <li class="item" 

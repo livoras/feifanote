@@ -18,8 +18,8 @@ Vue.component 'f-feifanote',
     watchAndSync @
 
 listenShortCutToggleDashboard = (vm)->    
-    document.addEventListener "keydown", (event)=>
-      if event.ctrlKey and event.keyCode is 192
-        vm.appStatus.dashboardActive = not vm.appStatus.dashboardActive
+  document.addEventListener "keydown", (event)=>
+    if event.ctrlKey and event.keyCode is 192
+      vm.appStatus.dashboardActive = not vm.appStatus.dashboardActive
 
 watchAndSync = (vm, callback)->

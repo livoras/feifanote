@@ -29,10 +29,10 @@ databus.makeNotebookActive = (notebook, callback)->
     success: (data)->
       callback?data
 
-databus.createNewPage = (notebook, callback)->
+databus.createNewPage = (notebook, callback, index)->
   data = 
     notebook_id: notebook.id
-    index: 1
+    index: index ? notebook.pages.length + 1
   ajax
     url: "/pages"
     type: "POST"
