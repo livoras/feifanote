@@ -1,26 +1,19 @@
 wuyinote = window.wuyinote = {}
 
 util = require './util.coffee'
-jqueryAjax = require '../../lib/ajax'
 config = require './config.coffee'
 EventEmitter = (require 'eventemitter2').EventEmitter2
-
+_ = require 'lodash'
+window._ = _
+databus = require './databus.coffee'
 require './filters/processed-content.coffee'
-
-ajax = (options)->
-  options.contentType = 'application/json'
-  options.url = config.server + options.url
-  if options.data
-    options.data = JSON.stringify options.data
-  if options.error
-    _error = options.error
-    options.error = (e)->
-      message = (JSON.parse e.responseText).message
-      _error message, e.status
-  return jqueryAjax options
+require './filters/limited.coffee'
 
 eventbus = new EventEmitter maxLisnteners: Number.MAX_VALUE
+log = debug: -> console.log.apply(console, arguments)
+ajax = databus.ajax
 
 wuyinote.common = module.exports = {
-  util, ajax, eventbus, EventEmitter
+  util, ajax, log, databus
+  eventbus, EventEmitter 
 }

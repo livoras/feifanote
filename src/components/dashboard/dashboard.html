@@ -8,10 +8,10 @@
     </li>
     <li class="item" 
       v-repeat="activeNotebook.pages"
-      v-class="active: activeNotebook.active_page_index == $index + 1"
-      v-on="click: activatePage($index)">
+      v-class="active: activeNotebook.active_page_id == id"
+      v-on="click: activatePage(id)">
       <p>
-      {{$index + '. ' + content.slice(0, 20)}}
+      {{index}} . {{content|limited}}
       </p>
     </li>
   </ul>
@@ -22,8 +22,8 @@
     </li>
     <li class="notebook item" 
       v-repeat="notebooks"
-      v-class="active: activeNotebook == this.$data"
-      v-on="click: activateNotebook(this)">
+      v-class="active: user.active_notebook_id == id"
+      v-on="click: activateNotebook(id)">
       <div class="decoration"></div>
       <p>{{name}}</p>
     </li>

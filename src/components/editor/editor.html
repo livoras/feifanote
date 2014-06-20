@@ -1,6 +1,9 @@
 <div class="editor">
+  <div class="notification">
+    <span v-show="dirty">*</span>
+    {{activeNotebook.name}} - 第{{activePage.index}}页
+  </div>
   <div class="content">
-    <textarea v-model="content">
-    </textarea>
+    <textarea v-model="content"></textarea>
   </div>
 </div>

@@ -22,6 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "type-of": "~2.0.1",
-    "eventemitter2": "~0.4.13"
+    "eventemitter2": "~0.4.13",
+    "lodash": "~2.4.1"
   }
 }
