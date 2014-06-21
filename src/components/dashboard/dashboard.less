@@ -16,6 +16,7 @@ div.dashboard {
     }
     li.item {
       .transition(box-shadow; .3s; ease;);
+      position: relative;
       border: 1px solid #999;
       float: left;
       margin: 15px 0px 20px 15px;
@@ -32,8 +33,8 @@ div.dashboard {
       }
       word-wrap: break-word;
       background-color: #fff;
-      opacity: 0.8;
-      i {
+      opacity: 0.9;
+      i.delete {
         opacity: 0;
         color: #777;
         float: right;
@@ -46,9 +47,17 @@ div.dashboard {
         }
       }
       &:hover {
-        i {
+        i.delete {
           opacity: 0.5;
         }
+      }
+      i.plus {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
       }
       &:hover, &.active {
         cursor: pointer;
@@ -61,6 +70,24 @@ div.dashboard {
         height: 100%;
         float: left; 
         background-color: #000;
+      }
+    }
+    li.plus {
+      @color: #BBB;
+      background-color: transparent;
+      opacity: 1;
+      border: 1px dashed @color;
+      i {
+        color: @color;
+        height: 25px;
+        width: 20px;
+      }
+      &:hover {
+        box-shadow: none;
+        border-color: #808080;
+        i {
+          color: #808080;
+        }
       }
     }
   }

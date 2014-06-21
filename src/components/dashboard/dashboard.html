@@ -7,16 +7,16 @@
       v-repeat="activeNotebook.pages"
       v-class="active: activeNotebook.active_page_id == id"
       v-on="click: activatePage(id)">
-      <i class="fa fa-times" 
+      <i class="fa fa-times delete" 
          v-on="click: deletePage($event, id)"></i>
       <p>
       {{index}} . {{content|limited}}
       </p>
     </li>
-    <li class="item" 
+    <li class="item plus"
         v-show="user.active_notebook_id != -1"
         v-on="click: createNewPage">
-      <p>+ 新增笔记</p>
+      <i class="fa fa-plus fa-2x plus"></i>
     </li>
   </ul>
   <ul class="notebooks items">
@@ -24,14 +24,13 @@
       v-repeat="notebooks"
       v-class="active: user.active_notebook_id == id"
       v-on="click: activateNotebook(id)">
-      <i class="fa fa-times" 
+      <i class="fa fa-times delete" 
          v-on="click: deleteNotebook($event, id)"></i>
       <div class="decoration"></div>
       <p>{{name}}</p>
     </li>
-    <li class="notebook item">
-      <div class="decoration"></div>
-      <p>+ 新增笔记本</p>
+    <li class="notebook item plus">
+      <i class="fa fa-plus fa-2x plus"></i>
     </li>
   </ul>
 </div>
