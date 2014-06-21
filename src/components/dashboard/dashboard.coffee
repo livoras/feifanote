@@ -13,6 +13,7 @@ Vue.component 'f-dashboard',
         _.find @activeNotebook.pages, {id: @activeNotebook.active_page_id}
   methods:
     activateNotebook: (id)->
+      if not id then return
       if id == @user.active_notebook_id then return
       save @
       @user.active_notebook_id = id
@@ -32,6 +33,14 @@ Vue.component 'f-dashboard',
         activeNotebook.active_page_id = page.id
         databus.makePageActive activeNotebook, page, ->
           log.debug "Page activated, ok."
+    createNewNotebook: ->
+      notebook = {editMode: yes}
+      @notebooks.push notebook
+      setTimeout =>
+        @$el.querySelector("input.last").focus()
+      , 10
+    deleteNotebook: (vm)->  
+      if not vm.id then @notebooks.pop()
     deletePage: (event, toDeleteId)->
       log.debug "Deleting Page #{toDeleteId}"
       event.stopPropagation()
@@ -60,12 +69,30 @@ Vue.component 'f-dashboard',
         alert "笔记名字不能超过16个字符"
         input.focus()
         return yes
-      databus.modifyNotebookName vm, ->
-        vm.editMode = no
-        log.debug "Notebook name saved."
-      , (msg, status)->
-        alert msg
-        input.focus()
+      if vm.id
+        modifyNotebookName vm, input
+      else
+        index = @notebooks.length + 1
+        name = vm.name
+        createNewNotebook {name, index}, vm, input, @
+
+createNewNotebook = (data, notebookVM, input, dashboardVM)->
+  databus.createNewNotebook data, (notebook)->
+    _.extend notebookVM, notebook
+    notebookVM.editMode = no
+    log.debug "Notebook created, ok"
+    ## HERE TO CREATE PAGE AND ACTIVE NOTEBOOK AND PAGE.
+  , (msg)->
+    alert msg
+    input.focus()
+
+modifyNotebookName = (vm, input)->
+  databus.modifyNotebookName vm, ->
+    vm.editMode = no
+    log.debug "Notebook name saved."
+  , (msg, status)->
+    alert msg
+    input.focus()
 
 reOrderPages = (activeNotebook, toDeleteId)->
   toDeletePage = _.find activeNotebook.pages, {id: toDeleteId}

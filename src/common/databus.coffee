@@ -13,13 +13,15 @@ databus.ajax = ajax = (options)->
       _error message, e.status
   return jqueryAjax options
 
-databus.createNewNotebook = (data, callback)->
+databus.createNewNotebook = (data, success, error)->
   ajax
     url: "/notebooks"
     type: "POST"
     data: data
     success: (notebook)->
-      callback?notebook
+      success?notebook
+    error: (msg, status)->
+      error?(msg, status)
 
 databus.makeNotebookActive = (notebook, callback)->
   ajax

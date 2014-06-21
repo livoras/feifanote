@@ -31,11 +31,12 @@
          v-show="!editMode"
          v-on="dblclick: enableEditMode(this, $event)">{{name}}</p>
       <input class="notebook-name" 
+        v-class="last: $index == notebooks.length - 1"
         v-model="name"
         v-show="editMode"
         v-on="blur: checkAndSend(this, $event)">
     </li>
-    <li class="notebook item plus">
+    <li class="notebook item plus" v-on="click: createNewNotebook(this, $event)">
       <i class="fa fa-plus fa-2x plus"></i>
     </li>
   </ul>
