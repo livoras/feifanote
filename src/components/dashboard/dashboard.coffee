@@ -13,9 +13,11 @@ Vue.component 'f-dashboard',
         _.find @activeNotebook.pages, {id: @activeNotebook.active_page_id}
   methods:
     activateNotebook: (id)->
+      if id == @user.active_notebook_id then return
       save @
       @user.active_notebook_id = id
     activatePage: (id)->
+      if id == @activeNotebook.active_page_id then return
       save @
       @activeNotebook.active_page_id = id
       databus.makePageActive @activeNotebook, @activePage, ->
@@ -41,6 +43,29 @@ Vue.component 'f-dashboard',
       databus.deletePage toDeleteId, ->
         reActivatePage activeNotebook, activePage, toDeleteId
         reOrderPages activeNotebook, toDeleteId
+    enableEditMode: (vm, event)->
+      vm.editMode = yes
+      # Immediately focus will never work for it isn't shown by vue.
+      # So, here is needed to be a setTimeout
+      setTimeout -> 
+        vm.$el.querySelector("input").focus()
+      , 2
+    checkAndSend: (vm, event)->
+      input = vm.$el.querySelector("input")
+      if vm.name.length is 0
+        alert "笔记名字不能为空"
+        input.focus()
+        return yes
+      if vm.name.length > 30
+        alert "笔记名字不能超过16个字符"
+        input.focus()
+        return yes
+      databus.modifyNotebookName vm, ->
+        vm.editMode = no
+        log.debug "Notebook name saved."
+      , (msg, status)->
+        alert msg
+        input.focus()
 
 reOrderPages = (activeNotebook, toDeleteId)->
   toDeletePage = _.find activeNotebook.pages, {id: toDeleteId}

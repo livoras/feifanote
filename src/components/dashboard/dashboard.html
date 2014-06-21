@@ -27,7 +27,13 @@
       <i class="fa fa-times delete" 
          v-on="click: deleteNotebook($event, id)"></i>
       <div class="decoration"></div>
-      <p>{{name}}</p>
+      <p title="双击修改笔记本名"
+         v-show="!editMode"
+         v-on="dblclick: enableEditMode(this, $event)">{{name}}</p>
+      <input class="notebook-name" 
+        v-model="name"
+        v-show="editMode"
+        v-on="blur: checkAndSend(this, $event)">
     </li>
     <li class="notebook item plus">
       <i class="fa fa-plus fa-2x plus"></i>
