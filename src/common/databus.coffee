@@ -73,6 +73,13 @@ databus.savePageContent = (pageId, pageContent, callback)->
   ajax
     url: "/pages/#{pageId}"
     type: "PATCH"
-    data: {content: pageContent}
+    data: {content: pageContent ? ""}
     success: (data)->
+      callback?data
+
+databus.deletePage = (pageId, callback)->
+  ajax
+    url: "/pages/#{pageId}"
+    type: "DELETE"
+    success: (data)-> 
       callback?data

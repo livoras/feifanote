@@ -29,6 +29,7 @@ initForFirst = (callback)->
         log.debug 'page activated, ok'
         notebook.active_page_id = page.id
         callback?()
+    , 1
 
 loadNotebooksStatus = (callback)->
   databus.loadNotebooks (notebooks)->
