@@ -4,30 +4,34 @@
      v-on="click: clickHandler">
   <ul class="pages items">
     <li class="item" 
-        v-show="user.active_notebook_id != -1"
-        v-on="click: createNewPage">
-      <p>新增笔记</p>
-    </li>
-    <li class="item" 
       v-repeat="activeNotebook.pages"
       v-class="active: activeNotebook.active_page_id == id"
       v-on="click: activatePage(id)">
+      <i class="fa fa-times" 
+         v-on="click: deletePage($event, id)"></i>
       <p>
       {{index}} . {{content|limited}}
       </p>
     </li>
+    <li class="item" 
+        v-show="user.active_notebook_id != -1"
+        v-on="click: createNewPage">
+      <p>+ 新增笔记</p>
+    </li>
   </ul>
   <ul class="notebooks items">
-    <li class="notebook item">
-      <div class="decoration"></div>
-      <p>新增笔记本</p>
-    </li>
     <li class="notebook item" 
       v-repeat="notebooks"
       v-class="active: user.active_notebook_id == id"
       v-on="click: activateNotebook(id)">
+      <i class="fa fa-times" 
+         v-on="click: deleteNotebook($event, id)"></i>
       <div class="decoration"></div>
       <p>{{name}}</p>
+    </li>
+    <li class="notebook item">
+      <div class="decoration"></div>
+      <p>+ 新增笔记本</p>
     </li>
   </ul>
 </div>
