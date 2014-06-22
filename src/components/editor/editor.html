@@ -4,6 +4,8 @@
     <i>{{activeNotebook.name}}</i> - 第{{activePage.index}}页
   </div>
   <div class="content">
-    <textarea v-model="content"></textarea>
+    <textarea 
+      v-model="content"
+      v-on="keydown: checkToSave"></textarea>
   </div>
 </div>

@@ -19,19 +19,24 @@ loadNotebooksStatus = (callback)->
 initActive = ->  
   appStatus = appStatus
   log.debug appStatus.notebooks
-  log.debug appStatus.user.active_notebook_id
+  log.debug "App initialized!"
   mainVm.currentView = "f-feifanote"
+  mainVm.maskShow = no
 
 mainVm = new Vue 
   el: '#container'
   data:
+    maskShow: no
     currentView: ''
     appStatus: appStatus
   created: ->
     if not initData.is_login
       @currentView = 'f-entry'
-    else initApp()
-    eventbus.on "entry:login-success", (data)->
+    else 
+      @maskShow = yes
+      initApp()
+    eventbus.on "entry:login-success", (data)=>
+      @maskShow = yes
       user = wuyinote.common.currentUser = data
       appStatus.user = user
       initApp()

@@ -1,15 +1,12 @@
 {log, databus} = wuyinote.common
 editorTpl = require './editor.html'
 
-autoSave = (vm)->    
-  AUTO_SAVE_TIME = 5000
-  setInterval ->
-    if not vm.dirty then return
-    activePage = vm.activePage
-    databus.savePageContent activePage.id, activePage.content, ->
-      log.debug "Auto saved, ok."
-      vm.dirty = no
-  , AUTO_SAVE_TIME  
+saveContent = (vm)->    
+  activePage = vm.activePage
+  if not vm.dirty then return
+  databus.savePageContent activePage.id, activePage.content, ->
+    log.debug "Content saved, ok."
+    vm.dirty = no
 
 Vue.component 'f-editor',
   template: editorTpl
@@ -26,7 +23,16 @@ Vue.component 'f-editor',
       $set: (value)->
         @activePage.content = value
         @dirty = yes
+  methods:
+    checkToSave: (event)->
+      S_KEY = 83
+      clearTimeout @saveTimer
+      if event.ctrlKey and event.keyCode is S_KEY
+        saveContent @
+        event.preventDefault()
+        return
+      @saveTimer = setTimeout =>
+        saveContent @
+      , 3 * 1000
   created: ->
     setTimeout => @dirty = no
-    autoSave @
-

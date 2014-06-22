@@ -10,6 +10,14 @@
 <body>
   <div id="container">
     <div v-view="currentView"></div>
+    <div class="mask"
+         v-show="maskShow" 
+         v-transition>
+         <div class="loading">
+           <div><i class="fa fa-spinner fa-spin fa-5x"></i></div>
+           Loading...
+         </div>
+    </div>
   </div>
 </body>
 

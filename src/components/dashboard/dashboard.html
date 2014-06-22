@@ -29,7 +29,7 @@
       <div class="decoration"></div>
       <p title="双击修改笔记本名"
          v-show="!editMode"
-         v-on="dblclick: enableEditMode(this, $event)">{{index}}:{{name}}</p>
+         v-on="dblclick: enableEditMode(this, $event)">{{name}}</p>
       <input class="notebook-name" 
         v-class="last: $index == notebooks.length - 1"
         v-model="name"
