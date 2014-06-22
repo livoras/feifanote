@@ -1,5 +1,5 @@
 dashboardTpl = require './dashboard.html'
-{databus, log} = wuyinote.common
+{databus, log, eventbus} = wuyinote.common
 
 Vue.component 'f-dashboard',
   template: dashboardTpl
@@ -24,6 +24,7 @@ Vue.component 'f-dashboard',
       if id == @activeNotebook.active_page_id then return
       save @
       @activeNotebook.active_page_id = id
+      eventbus.emit "active-page-change"
       databus.makePageActive @activeNotebook, @activePage, ->
         log.debug "Page activated. ok"
 
@@ -36,6 +37,7 @@ Vue.component 'f-dashboard',
         log.debug "Page created, ok"
         activeNotebook.pages.push(page)
         activeNotebook.active_page_id = page.id
+        eventbus.emit "active-page-change"
         databus.makePageActive activeNotebook, page, ->
           log.debug "Page activated, ok."
 
@@ -133,6 +135,7 @@ reActivatePage = (activeNotebook, activePage, toDeleteId, callback)->
     pages = activeNotebook.pages
     toActivatePage = pages[realIndex + 1] or pages[realIndex - 1]
     activeNotebook.active_page_id = toActivatePage.id
+    eventbus.emit "active-page-change"
     databus.makePageActive activeNotebook, toActivatePage, (page)->
       log.debug "Page active after deletion."
       callback?()

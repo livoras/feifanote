@@ -1,12 +1,5 @@
-{log, databus} = wuyinote.common
+{log, databus, eventbus} = wuyinote.common
 editorTpl = require './editor.html'
-
-saveContent = (vm)->    
-  activePage = vm.activePage
-  if not vm.dirty then return
-  databus.savePageContent activePage.id, activePage.content, ->
-    log.debug "Content saved, ok."
-    vm.dirty = no
 
 Vue.component 'f-editor',
   template: editorTpl
@@ -21,18 +14,54 @@ Vue.component 'f-editor',
       $get: ->
         @activePage.content
       $set: (value)->
-        @activePage.content = value
-        @dirty = yes
+        activePage = @activePage
+        if activePage.content isnt value
+          activePage.content = value
+          @dirty = yes
   methods:
-    checkToSave: (event)->
-      S_KEY = 83
+    deferToSave: ->
       clearTimeout @saveTimer
-      if event.ctrlKey and event.keyCode is S_KEY
-        saveContent @
-        event.preventDefault()
-        return
       @saveTimer = setTimeout =>
         saveContent @
       , 3 * 1000
   created: ->
-    setTimeout => @dirty = no
+    setTimeout => 
+      @dirty = no
+      @editor = new wysihtml5.Editor "editor",
+        toolbar: "editor-toolbar"
+        parserRules: wysihtml5ParserRules
+        stylesheets: ["/lib/rich-editor.css"]
+      @editor.on "load", =>
+        syncContent @
+        listenKeyDownActions @
+        watchActivePageChangeAndSycnEditor @
+
+syncContent = (vm)->
+  sync = ->
+    vm.content = vm.editor.composer.element.innerHTML
+    vm.deferToSave()
+  vm.editor.composer.element.addEventListener 'keyup', sync
+  vm.editor.on "aftercommand:composer", sync
+
+listenKeyDownActions = (vm)->
+  vm.editor.composer.element.addEventListener 'keydown', (event)=>
+    S_KEY = 83
+    if event.ctrlKey
+      if event.keyCode is S_KEY
+        event.preventDefault()
+        saveContent vm
+      else if event.keyCode is 192
+        eventbus.emit "toggle-dashboard"
+
+watchActivePageChangeAndSycnEditor = (vm)->
+  pageChange = ->
+    vm.editor.composer.element.innerHTML = vm.activePage.content
+  vm.$watch "user.active_notebook_id", pageChange
+  eventbus.on "active-page-change", pageChange
+
+saveContent = (vm)->    
+  activePage = vm.activePage
+  if not vm.dirty then return
+  databus.savePageContent activePage.id, activePage.content, ->
+    log.debug "Content saved, ok."
+    vm.dirty = no

@@ -14,9 +14,12 @@ Vue.component 'f-feifanote',
 
   created: ->
     @appStatus = wuyinote.common.appStatus
+    eventbus.on "toggle-dashboard", =>
+      @appStatus.dashboardActive = not @appStatus.dashboardActive
     listenShortCutToggleDashboard @
+
 
 listenShortCutToggleDashboard = (vm)->    
   document.addEventListener "keydown", (event)=>
     if event.ctrlKey and event.keyCode is 192
-      vm.appStatus.dashboardActive = not vm.appStatus.dashboardActive
+      eventbus.emit "toggle-dashboard"
