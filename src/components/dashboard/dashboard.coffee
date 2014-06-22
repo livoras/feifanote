@@ -14,7 +14,6 @@ Vue.component 'f-dashboard',
 
   methods:
     activateNotebook: (id)->
-      log.debug id
       if not id then return
       if id == @user.active_notebook_id then return
       save @
@@ -74,6 +73,10 @@ Vue.component 'f-dashboard',
       databus.deletePage toDeleteId, ->
         reActivatePage activeNotebook, activePage, toDeleteId
         reOrderPages activeNotebook, toDeleteId
+
+    enterHandlerOfNameInput: (vm, event)->
+      ENTER_KEY = 13
+      if event.keyCode is ENTER_KEY then @checkAndSend vm, event
 
     enableEditMode: (vm, event)->
       vm.editMode = yes
@@ -144,6 +147,7 @@ reActivateNotebooks = (vm, toDeleteId, callback)->
     notebooks = vm.notebooks
     toActivateNotebook = notebooks[realIndex + 1] or notebooks[realIndex - 1]
     activeIfPageLoadedElseLoad toActivateNotebook, vm, callback
+  else callback?()
 
 reOrderNotebooks = (vm, toDeleteId)->
   toDeleteNotebook = _.find vm.notebooks, {id: toDeleteId}
