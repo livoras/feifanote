@@ -31,7 +31,8 @@
           <span class="key">密码</span>
           <input type="password" 
                  placeholder="6~30 位密码"
-                 v-model="signupData.password">
+                 v-model="signupData.password"
+                 v-on="keydown: enterToSignup">
         </label>
         <button v-on="click: signup">马上注册</button>
         <a class="router" 
@@ -52,7 +53,8 @@
           <span class="key">密码</span>
           <input type="password" 
                  placeholder="6~30 位密码"
-                 v-model="loginData.password">
+                 v-model="loginData.password"
+                 v-on="keydown: enterToLogin">
         </label>
         <a class="router" 
            href="#" 

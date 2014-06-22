@@ -29,6 +29,12 @@ Vue.component 'f-entry',
         error: (msg, status)->  
           alert status + ': ' + msg
     login: login
+    enterToLogin: (event)->
+      ENTER_KEY = 13
+      if event.keyCode is ENTER_KEY then @login @loginData, @
+    enterToSignup: (event)->  
+      ENTER_KEY = 13
+      if event.keyCode is ENTER_KEY then @signup()
   created: ->  
     setTimeout =>
       @titleShow = yes
