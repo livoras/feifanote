@@ -86,6 +86,13 @@ databus.deletePage = (pageId, callback)->
     success: (data)-> 
       callback?data
 
+databus.deleteNotebook = (notebookId, callback)->
+  ajax
+    url: "/notebooks/#{notebookId}"
+    type: "DELETE"
+    success: (data)-> 
+      callback?data
+
 databus.modifyNotebookName = (notebook, success, error)->
   ajax 
     url: "/notebooks/#{notebook.id}"
