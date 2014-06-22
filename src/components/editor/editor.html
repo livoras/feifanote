@@ -1,25 +1,52 @@
 <div class="editor">
   <div id="editor-toolbar" style="display: none;">
-  <a data-wysihtml5-command="bold">bold</a>
-  <a data-wysihtml5-command="italic">italic</a>
-  <a data-wysihtml5-command="justifyCenter">align center</a>
-  <a data-wysihtml5-command="justifyLeft">align left</a>
-  <a data-wysihtml5-command="justifyRight">align right</a>
-  <a data-wysihtml5-command="underline">underline</a>
+  <a data-wysihtml5-command="bold"><i class="fa fa-bold"></i></a>
+  <a data-wysihtml5-command="italic"><i class="fa fa-italic"></i></a>
+  <a data-wysihtml5-command="justifyCenter"><i class="fa fa-align-center"></i></a>
+  <a data-wysihtml5-command="justifyLeft"><i class="fa fa-align-left"></i></a>
+  <a data-wysihtml5-command="justifyRight"><i class="fa fa-align-right"></i></a>
+  <a data-wysihtml5-command="underline"><i class="fa fa-underline"></i></a>
+  <a data-wysihtml5-command="insertUnOrderedList">
+    <i class="fa fa-list-ul"></i>
+  </a>
+  <a data-wysihtml5-command="insertOrderedList">
+    <i class="fa fa-list-ol"></i>
+  </a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote">
+    <i class="fa fa-indent"></i>
+  </a>
+
+  <!--Blocks-->
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">H2</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="code">code</a>
   
   <!-- Some wysihtml5 commands require extra parameters -->
   <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
   <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
   <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
   
-  <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
-  <a data-wysihtml5-command="createLink">insert link</a>
+  <!--Command needs dialog-->
+  <a data-wysihtml5-command="createLink"><i class="fa fa-link"></i></a>
+  <a data-wysihtml5-command="insertImage"><i class="fa fa-image"></i></a>
+
+  <!--Dialogs-->
   <div data-wysihtml5-dialog="createLink" style="display: none;">
     <label>
       Link:
       <input data-wysihtml5-dialog-field="href" value="http://" class="text">
     </label>
     <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+
+  <div data-wysihtml5-dialog="insertImage" style="display: none;">
+    <label>
+      Image:
+      <input data-wysihtml5-dialog-field="src" value="http://">
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a>
+    <a data-wysihtml5-dialog-action="cancel">Cancel</a>
   </div>
 </div>
 

@@ -10,7 +10,7 @@
       <i class="fa fa-times delete" 
          v-on="click: deletePage($event, id)"></i>
       <p>
-      {{index}} . {{content|limited}}
+      {{index}} . {{content|processed-content|limited}}
       </p>
     </li>
     <li class="item plus"

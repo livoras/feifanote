@@ -1,2 +1,3 @@
 Vue.filter 'processed-content', (value)->
-  value + ' processed content'
+  if value
+    return value.replace /<[^>]*>/g, ""
