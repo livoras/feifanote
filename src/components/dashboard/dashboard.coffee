@@ -45,7 +45,7 @@ Vue.component 'f-dashboard',
         pages: null 
         id: null
         active_page_id: null
-        name: null
+        name: ""
         index: @notebooks.length + 1
       @notebooks.push notebook
       defer => @$el.querySelector("input.last").focus()
@@ -82,7 +82,10 @@ Vue.component 'f-dashboard',
       vm.editMode = yes
       # Immediately focus will never work for it isn't shown by vue.
       # So, here is needed to be a setTimeout
-      defer -> vm.$el.querySelector("input").focus()
+      defer -> 
+        input = vm.$el.querySelector("input")
+        input.focus()
+        input.select()
 
     checkAndSend: (vm, event)->
       input = vm.$el.querySelector("input")
