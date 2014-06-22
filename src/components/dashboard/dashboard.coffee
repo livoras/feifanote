@@ -11,19 +11,15 @@ Vue.component 'f-dashboard',
     activePage:
       $get: ->
         _.find @activeNotebook.pages, {id: @activeNotebook.active_page_id}
+
   methods:
     activateNotebook: (id)->
       log.debug id
       if not id then return
       if id == @user.active_notebook_id then return
       save @
-      to_activate_notebook = _.find @notebooks, {id}
-      if not to_activate_notebook.loaded
-        databus.loadPages to_activate_notebook, (pages)=>
-          log.debug "Pages of #{id} loaded", pages
-          to_activate_notebook.pages = pages
-          active to_activate_notebook, @
-      else active to_activate_notebook, @
+      toActivateNotebook = _.find @notebooks, {id}
+      activeIfPageLoadedElseLoad toActivateNotebook, @
 
     activatePage: (id)->
       if id == @activeNotebook.active_page_id then return
@@ -51,6 +47,7 @@ Vue.component 'f-dashboard',
         id: null
         active_page_id: null
         name: null
+        index: @notebooks.length + 1
       @notebooks.push notebook
       defer => @$el.querySelector("input.last").focus()
 
@@ -63,8 +60,8 @@ Vue.component 'f-dashboard',
       if confirm "该笔记本下所有笔记也会同时被删除，确认要删除吗？"
         log.debug "Deleting Notebook #{toDeleteId}"
         databus.deleteNotebook toDeleteId, =>
-          reActivateNotebooks @, toDeleteId
-          reOrderNotebooks @, toDeleteId
+          reActivateNotebooks @, toDeleteId, =>
+            reOrderNotebooks @, toDeleteId
 
     deletePage: (event, toDeleteId)->
       event.stopPropagation()
@@ -146,10 +143,7 @@ reActivateNotebooks = (vm, toDeleteId, callback)->
     realIndex = vm.activeNotebook.index - 1
     notebooks = vm.notebooks
     toActivateNotebook = notebooks[realIndex + 1] or notebooks[realIndex - 1]
-    vm.user.active_notebook_id = toActivateNotebook.id
-    databus.makeNotebookActive toActivateNotebook, ->
-      log.debug "Notebook active after deletion."
-      callback?()
+    activeIfPageLoadedElseLoad toActivateNotebook, vm, callback
 
 reOrderNotebooks = (vm, toDeleteId)->
   toDeleteNotebook = _.find vm.notebooks, {id: toDeleteId}
@@ -163,9 +157,20 @@ save = (vm)->
   databus.savePageContent activePage.id, activePage.content, ->
     log.debug "Save content before switching"
 
-active = (to_activate_notebook, vm)=>
-  vm.user.active_notebook_id = to_activate_notebook.id
-  databus.makeNotebookActive to_activate_notebook, =>
+activeIfPageLoadedElseLoad = (toActivateNotebook, vm, callback)->
+  if not toActivateNotebook.loaded
+    databus.loadPages toActivateNotebook, (pages)=>
+      log.debug "Pages of #{toActivateNotebook.id} loaded", pages
+      toActivateNotebook.pages = pages
+      active toActivateNotebook, vm
+      callback?()
+  else 
+    active toActivateNotebook, vm
+    callback?()
+
+active = (toActivateNotebook, vm)=>
+  vm.user.active_notebook_id = toActivateNotebook.id
+  databus.makeNotebookActive toActivateNotebook, =>
     log.debug "Notebook active"
 
 defer = (fn)->
