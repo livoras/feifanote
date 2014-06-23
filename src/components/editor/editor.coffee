@@ -35,6 +35,7 @@ Vue.component 'f-editor',
         syncContent @
         listenKeyDownActions @
         watchActivePageChangeAndSycnEditor @
+        eventbus.emit "editor-loaded"
 
 syncContent = (vm)->
   sync = ->

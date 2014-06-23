@@ -6,6 +6,9 @@ wuyinote.common.currentUser = user
 appStatus.user = user
 
 initApp = ->     
+  eventbus.on "editor-loaded", -> 
+    log.debug "Editor Loaded! Hide mask."
+    mainVm.maskShow = no
   loadNotebooksStatus => initActive()
 
 loadNotebooksStatus = (callback)->
@@ -21,7 +24,6 @@ initActive = ->
   log.debug appStatus.notebooks
   log.debug "App initialized!"
   mainVm.currentView = "f-feifanote"
-  mainVm.maskShow = no
 
 mainVm = new Vue 
   el: '#container'

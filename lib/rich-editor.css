@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 .wysiwyg-text-align-center {
   text-align: center;
 }
