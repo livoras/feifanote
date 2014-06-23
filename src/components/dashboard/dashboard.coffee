@@ -13,6 +13,16 @@ Vue.component 'f-dashboard',
         _.find @activeNotebook.pages, {id: @activeNotebook.active_page_id}
 
   methods:
+    scroll: (event)->
+      event.preventDefault()
+      vm = event.targetVM
+      el = event.currentTarget
+      DELTA = 40
+      if event.wheelDelta < 0
+        el.scrollLeft += DELTA
+      else 
+        el.scrollLeft -= DELTA
+      console.log el.scrollWidth, el.clientWidth
     activateNotebook: (id)->
       if not id then return
       if id == @user.active_notebook_id then return

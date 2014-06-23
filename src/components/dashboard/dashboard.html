@@ -2,7 +2,8 @@
      v-show="dashboardActive" 
      v-transition
      v-on="click: clickHandler">
-  <ul class="pages items">
+  <ul class="pages items"
+      v-on="mousewheel: scroll">
     <li class="item" 
       v-repeat="activeNotebook.pages"
       v-class="active: activeNotebook.active_page_id == id"
@@ -19,7 +20,8 @@
       <i class="fa fa-plus fa-2x plus"></i>
     </li>
   </ul>
-  <ul class="notebooks items">
+  <ul class="notebooks items"
+      v-on="mousewheel: scroll">
     <li class="notebook item" 
       v-repeat="notebooks"
       v-class="active: user.active_notebook_id == id"

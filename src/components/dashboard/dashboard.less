@@ -10,15 +10,19 @@ div.dashboard {
 
   ul.items {
     overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
     height: 160px;
     &.notebooks {
       height: 130px;
     }
     li.item {
+      display: inline-block;
+      white-space: normal;
+      overflow: hidden;
       .transition(box-shadow; .3s; ease;);
       position: relative;
       border: 1px solid #999;
-      float: left;
       margin: 15px 0px 20px 15px;
       // border-radius: 6px;
       input.notebook-name {
