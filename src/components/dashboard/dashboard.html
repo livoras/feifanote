@@ -3,7 +3,8 @@
      v-transition
      v-on="click: clickHandler">
   <ul class="pages items"
-      v-on="mousewheel: scroll">
+      v-on="mousewheel: scroll,
+            DOMMouseScroll: scroll">
     <li class="item" 
       v-repeat="activeNotebook.pages"
       v-class="active: activeNotebook.active_page_id == id"
@@ -21,7 +22,8 @@
     </li>
   </ul>
   <ul class="notebooks items"
-      v-on="mousewheel: scroll">
+      v-on="mousewheel: scroll,
+            DOMMouseScroll: scroll">
     <li class="notebook item" 
       v-repeat="notebooks"
       v-class="active: user.active_notebook_id == id"

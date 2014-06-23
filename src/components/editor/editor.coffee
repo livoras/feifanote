@@ -39,8 +39,11 @@ Vue.component 'f-editor',
         eventbus.emit "editor-loaded"
 
 listenScrollToAjustEditorbar = (vm)->
-  window.addEventListener "scroll", ->
-    vm.floatBar = (document.body.scrollTop isnt 0)
+  _scroll = window.onscroll
+  window.onscroll = ->
+    scrollTop = document.body.scrollTop or window.pageYOffset
+    vm.floatBar = (scrollTop isnt 0)
+    if _scroll then _scroll.apply @, aruguments
 
 syncContent = (vm)->
   sync = ->

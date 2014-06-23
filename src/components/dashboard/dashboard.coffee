@@ -18,11 +18,11 @@ Vue.component 'f-dashboard',
       vm = event.targetVM
       el = event.currentTarget
       DELTA = 40
-      if event.wheelDelta < 0
+      delta = if event.detail then event.detail * (-120) else event.wheelDelta
+      if delta < 0
         el.scrollLeft += DELTA
       else 
         el.scrollLeft -= DELTA
-      console.log el.scrollWidth, el.clientWidth
     activateNotebook: (id)->
       if not id then return
       if id == @user.active_notebook_id then return
