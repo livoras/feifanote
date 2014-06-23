@@ -1,8 +1,11 @@
+@import '../../common/common.less';
+
 div.editor {
   max-width: 960px;
   width: 60%;
   margin:70px auto;
   margin-bottom: 0px;
+  margin-top: 110px;
   div.notification {
     font-size: 13px;
     float: right;
@@ -32,7 +35,17 @@ div.editor {
   }
 }
 #editor-toolbar {
-  margin-bottom: 20px;
+  &.float {
+    top: 10px;
+  }
+  z-index: 2;
+  position: fixed;
+  width: 60%;
+  max-width: 960px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 80px;
   a {
     width: 30px;
     display: inline-block;
@@ -40,5 +53,57 @@ div.editor {
     border-right: 1px solid #eee;
     padding-right: 5px;
     text-align: center;
+    cursor: pointer;
+  }
+
+  a.drop-down-command {
+    position: relative;
+    i.down {
+      position: absolute;
+      font-size: 12px;
+      height: 16px;
+      bottom: -3px;
+      right: 4px;
+    }
+  }
+
+  ul.drop-down-list {
+    position: absolute;
+    margin: auto;
+    width: 40px; 
+    left: -6px;
+    right: 0;
+    background-color: #f9f9fa;
+    border: 1px solid #eee;
+    border-top: none;
+    box-shadow: 0 3px 6px -1px #E2E1E1;
+    li {
+      .transition(background-color; 0.2s; ease;);
+      @height: 23px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      height: @height;
+      line-height: @height;
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+    &.color-picker {
+      span {
+        font-weight: bold;
+      }
+      span.red {
+        color: red;
+      }
+      span.blue {
+        color: blue;
+      }
+      span.green {
+        color: green;
+      }
+      span.yellow {
+        color: yellow;
+      }
+    }
   }
 }

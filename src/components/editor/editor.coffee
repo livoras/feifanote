@@ -25,6 +25,7 @@ Vue.component 'f-editor',
         saveContent @
       , 3 * 1000
   created: ->
+    listenScrollToAjustEditorbar @
     setTimeout => 
       @dirty = no
       @editor = new wysihtml5.Editor "editor",
@@ -36,6 +37,10 @@ Vue.component 'f-editor',
         listenKeyDownActions @
         watchActivePageChangeAndSycnEditor @
         eventbus.emit "editor-loaded"
+
+listenScrollToAjustEditorbar = (vm)->
+  window.addEventListener "scroll", ->
+    vm.floatBar = (document.body.scrollTop isnt 0)
 
 syncContent = (vm)->
   sync = ->

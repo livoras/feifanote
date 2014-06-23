@@ -1,32 +1,101 @@
 <div class="editor">
-  <div id="editor-toolbar" style="display: none;">
+
+<div id="editor-toolbar"
+     style="display: none;"
+     v-class="float: floatBar">
   <a data-wysihtml5-command="bold"><i class="fa fa-bold"></i></a>
   <a data-wysihtml5-command="italic"><i class="fa fa-italic"></i></a>
+  <a data-wysihtml5-command="underline"><i class="fa fa-underline"></i></a>
+
+  <a class="drop-down-command"
+     v-on="mouseover: showFontList = true,
+           mouseleave: showFontList = false">
+    <i class="fa fa-header"></i>
+    <i class="fa fa-sort-down down"></i>
+    <ul class="drop-down-list" v-show="showFontList">
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">
+          H1
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">
+          H2
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">
+          H3
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4">
+          H4
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5">
+          H5
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6">
+          H6
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">
+          P
+        </span>
+      </li>
+      <li>
+        <span data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote">
+          Quote
+        </span>
+      </li>
+    </ul>
+  </a>
+
+  <a class="drop-down-command"
+     v-on="mouseover: showColorPicker = true,
+           mouseleave: showColorPicker = false">
+    <i class="fa fa-eraser"></i>
+    <i class="fa fa-sort-down down"></i>
+    <ul class="drop-down-list color-picker" v-show="showColorPicker">
+      <li>
+        <span class="red" data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">
+          R
+        </span>
+      </li>
+      <li>
+        <span class="green" data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">
+          G
+        </span>
+      </li>
+      <li>
+        <span class="blue" data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">
+          B
+        </span>
+      </li>
+      <li>
+        <span class="yellow" data-wysihtml5-command="foreColor" data-wysihtml5-command-value="yellow">
+          Y
+        </span>
+      </li>
+    </ul>
+  </a>
+
   <a data-wysihtml5-command="justifyCenter"><i class="fa fa-align-center"></i></a>
   <a data-wysihtml5-command="justifyLeft"><i class="fa fa-align-left"></i></a>
   <a data-wysihtml5-command="justifyRight"><i class="fa fa-align-right"></i></a>
-  <a data-wysihtml5-command="underline"><i class="fa fa-underline"></i></a>
   <a data-wysihtml5-command="insertUnOrderedList">
     <i class="fa fa-list-ul"></i>
   </a>
   <a data-wysihtml5-command="insertOrderedList">
     <i class="fa fa-list-ol"></i>
   </a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote">
-    <i class="fa fa-indent"></i>
-  </a>
 
-  <!--Blocks-->
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">H2</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">P</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="code">code</a>
-  
-  <!-- Some wysihtml5 commands require extra parameters -->
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
-  
+
   <!--Command needs dialog-->
   <a data-wysihtml5-command="createLink"><i class="fa fa-link"></i></a>
   <a data-wysihtml5-command="insertImage"><i class="fa fa-image"></i></a>
@@ -50,11 +119,12 @@
   </div>
 </div>
 
-  <div class="content">
-    <div class="notification">
-      <span v-show="dirty">*</span>
-      <i>{{activeNotebook.name}}</i> - 第{{activePage.index}}页
-    </div>
-    <textarea id="editor" spellcheck='false'>{{content}}</textarea>
+<div class="content">
+  <div class="notification">
+    <span v-show="dirty">*</span>
+    <i>{{activeNotebook.name}}</i> - 第{{activePage.index}}页
   </div>
+  <textarea id="editor" spellcheck='false'>{{content}}</textarea>
+</div>
+
 </div>
