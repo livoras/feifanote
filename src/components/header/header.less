@@ -43,10 +43,14 @@ div.header {
         float: right;
         padding: 0 15px;
         margin-right: 2px;
-        // background-color: #555;
-        &:hover {
-          // background-color: #666;
-          cursor: pointer;
+        cursor: pointer;
+        &.action.user {
+          cursor: auto;
+          i {
+            position: relative;
+            top: 1px;
+            cursor: pointer;
+          }
         }
       }
     }

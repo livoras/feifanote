@@ -4,7 +4,12 @@
     <input placeholder="搜索"/>
     <div class="right-actions">
       <div class="action" v-on="click: toggleDashboard">仪表盘</div>
-      <div class="action" v-on="click: logout">{{user.username}}</div>
+      <div class="action user">
+        {{user.username}}
+        <i title="退出"
+           v-on="click: logout" 
+           class="fa fa-sign-out"></i>
+      </div>
     </div>
   </div>
 </div>
