@@ -5,7 +5,7 @@ div.editor {
   width: 60%;
   margin:70px auto;
   margin-bottom: 0px;
-  margin-top: 110px;
+  margin-top: 125px;
   div.notification {
     font-size: 13px;
     float: right;
@@ -33,10 +33,13 @@ div.editor {
       outline: none;
     }
   }
+  .wysihtml5-command-active {
+    box-shadow: 0 0 7px 0px #D6D6D6 inset;
+  }
 }
 #editor-toolbar {
   &.float {
-    top: 10px;
+    top: 5px;
   }
   z-index: 2;
   position: fixed;
@@ -50,8 +53,8 @@ div.editor {
     width: 30px;
     display: inline-block;
     color: #666;
-    border-right: 1px solid #eee;
-    padding-right: 5px;
+    // border-right: 1px solid #eee;
+    padding: 5px;
     text-align: center;
     cursor: pointer;
   }
@@ -71,8 +74,9 @@ div.editor {
     position: absolute;
     z-index: 2;
     margin: auto;
+    top: 30px;
     width: 40px; 
-    left: -6px;
+    left: 0px;
     right: 0;
     background-color: #f9f9fa;
     border: 1px solid #eee;
