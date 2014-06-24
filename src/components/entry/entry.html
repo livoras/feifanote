@@ -1,64 +1,61 @@
 <div class="entry">
+  <div class="text">
+    <div class="title"
+         v-show="titleShow"
+         v-transition>无印笔记</div>
+    <div class="sub-title" 
+         v-show="titleShow"
+         v-transition>极简主义笔记本</div>
+  </div>
 
-  <div class="container">
-    <div class="text">
-      <div class="title"
-           v-show="titleShow"
-           v-transition>无印笔记</div>
-      <div class="sub-title" 
-           v-show="titleShow"
-           v-transition>极简主义笔记本</div>
+  <div class="forms">
+
+    <div class="signup-form form" 
+         v-show="signupFormShow"
+         v-transition>
+      <label>
+        <span class="key">邮箱</span> 
+        <input type="email" 
+               placeholder="example@mail.com" 
+               v-model="signupData.email">
+      </label>
+      <label>
+        <span class="key">用户名</span>
+        <input type="text" 
+               placeholder="4~30 个字符"
+               v-model="signupData.username">
+      </label>
+      <label>
+        <span class="key">密码</span>
+        <input type="password" 
+               placeholder="6~30 位密码"
+               v-model="signupData.password"
+               v-on="keydown: enterToSignup">
+      </label>
+      <button v-on="click: signup">马上注册</button>
+      <a class="router" 
+         v-on="click: signupFormShow = false">已有账号，直接登陆 >></a>
     </div>
 
-    <div class="forms">
-
-      <div class="signup-form form" 
-           v-show="signupFormShow"
-           v-transition>
-        <label>
-          <span class="key">邮箱</span> 
-          <input type="email" 
-                 placeholder="me@example.com" 
-                 v-model="signupData.email">
-        </label>
-        <label>
-          <span class="key">用户名</span>
-          <input type="text" 
-                 placeholder="4~30 个字符"
-                 v-model="signupData.username">
-        </label>
-        <label>
-          <span class="key">密码</span>
-          <input type="password" 
-                 placeholder="6~30 位密码"
-                 v-model="signupData.password"
-                 v-on="keydown: enterToSignup">
-        </label>
-        <button v-on="click: signup">马上注册</button>
-        <a class="router" 
-           v-on="click: signupFormShow = false">已有账号，直接登陆 >></a>
-      </div>
-
-      <div class="login-form form" 
-           v-show="!signupFormShow"
-           v-transition>
-        <label>
-          <span class="key">邮箱</span> 
-          <input type="email" 
-                 placeholder="me@example.com"
-                 v-model="loginData.email">
-        </label>
-        <label>
-          <span class="key">密码</span>
-          <input type="password" 
-                 placeholder="6~30 位密码"
-                 v-model="loginData.password"
-                 v-on="keydown: enterToLogin">
-        </label>
-        <a class="router" 
-           v-on="click: signupFormShow = true"><< 返回注册</a>
-        <button v-on="click: login(loginData, this)">登陆</button>
-      </div>
+    <div class="login-form form" 
+         v-show="!signupFormShow"
+         v-transition>
+      <label>
+        <span class="key">邮箱</span> 
+        <input type="email" 
+               placeholder="me@example.com"
+               v-model="loginData.email">
+      </label>
+      <label>
+        <span class="key">密码</span>
+        <input type="password" 
+               placeholder="6~30 位密码"
+               v-model="loginData.password"
+               v-on="keydown: enterToLogin">
+      </label>
+      <a class="router" 
+         v-on="click: signupFormShow = true"><< 返回注册</a>
+      <button v-on="click: login(loginData, this)">登陆</button>
     </div>
   </div>
 </div>

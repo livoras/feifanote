@@ -23,6 +23,7 @@ initActive = ->
   appStatus = appStatus
   log.debug appStatus.notebooks
   log.debug "App initialized!"
+  document.body.className = ""
   mainVm.currentView = "f-feifanote"
 
 mainVm = new Vue 
