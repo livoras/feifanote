@@ -15,9 +15,12 @@
          v-transition>
       <label>
         <span class="key">邮箱</span> 
-        <input type="email" 
+        <input type="email"
                placeholder="example@mail.com" 
                v-model="signupData.email">
+        <span class="notification">
+          <i class="fa fa-"></i>
+        </span>
       </label>
       <label>
         <span class="key">用户名</span>
@@ -43,13 +46,11 @@
       <label>
         <span class="key">邮箱</span> 
         <input type="email" 
-               placeholder="me@example.com"
                v-model="loginData.email">
       </label>
       <label>
         <span class="key">密码</span>
         <input type="password" 
-               placeholder="6~30 位密码"
                v-model="loginData.password"
                v-on="keydown: enterToLogin">
       </label>
