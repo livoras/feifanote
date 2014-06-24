@@ -34,16 +34,31 @@ Vue.component 'f-editor',
         stylesheets: ["/lib/rich-editor.css"]
       @editor.on "load", =>
         syncContent @
+        controlDialogs @
         listenKeyDownActions @
         watchActivePageChangeAndSycnEditor @
         eventbus.emit "editor-loaded"
+
+controlDialogs = (vm)->
+  [imageCmdDom, imageDialog, linkCmdDom, linkDialog] = []
+  vm.editor.on "show:dialog", (cmd)->
+    if cmd.command is "insertImage"
+      [imageCmdDom, imageDialog] = [cmd.commandLink, cmd.dialogContainer]
+      if linkCmdDom 
+        linkCmdDom.className = ""
+        linkDialog.style.display = "none"
+    else if cmd.command is "createLink"
+      [linkCmdDom, linkDialog] = [cmd. commandLink, cmd.dialogContainer]
+      if imageCmdDom 
+        imageCmdDom.className = ""
+        imageDialog.style.display = "none"
 
 listenScrollToAjustEditorbar = (vm)->
   _scroll = window.onscroll
   window.onscroll = ->
     scrollTop = document.body.scrollTop or window.pageYOffset
     vm.floatBar = (scrollTop isnt 0)
-    if _scroll then _scroll.apply @, aruguments
+    if _scroll then _scroll.apply @, arguments
 
 syncContent = (vm)->
   sync = ->
