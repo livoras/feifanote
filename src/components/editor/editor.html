@@ -101,21 +101,27 @@
   <a data-wysihtml5-command="insertImage"><i class="fa fa-image"></i></a>
 
   <!--Dialogs-->
-  <div data-wysihtml5-dialog="createLink" style="display: none;">
+  <div class="editor-dialog" data-wysihtml5-dialog="createLink" style="display: none;">
     <label>
-      Link:
-      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+      链接：
+      <input data-wysihtml5-dialog-field="href"
+        value="http://" 
+        class="text"
+        spellcheck="false">
     </label>
-    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+    <a data-wysihtml5-dialog-action="save">确定</a> <a data-wysihtml5-dialog-action="cancel">取消</a>
   </div>
 
-  <div data-wysihtml5-dialog="insertImage" style="display: none;">
+  <div class="editor-dialog" data-wysihtml5-dialog="insertImage" style="display: none;">
     <label>
-      Image:
-      <input data-wysihtml5-dialog-field="src" value="http://">
+      图片链接：
+      <input data-wysihtml5-dialog-field="src" 
+        value="http://"
+        class="text"
+        spellcheck="false">
     </label>
-    <a data-wysihtml5-dialog-action="save">OK</a>
-    <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+    <a data-wysihtml5-dialog-action="save">确定</a>
+    <a data-wysihtml5-dialog-action="cancel">取消</a>
   </div>
 </div>
 
