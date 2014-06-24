@@ -36,7 +36,6 @@
         </label>
         <button v-on="click: signup">马上注册</button>
         <a class="router" 
-           href="#"
            v-on="click: signupFormShow = false">已有账号，直接登陆 >></a>
       </div>
 
@@ -57,7 +56,6 @@
                  v-on="keydown: enterToLogin">
         </label>
         <a class="router" 
-           href="#" 
            v-on="click: signupFormShow = true"><< 返回注册</a>
         <button v-on="click: login(loginData, this)">登陆</button>
       </div>
