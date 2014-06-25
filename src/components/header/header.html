@@ -3,7 +3,10 @@
   <div class="actions">
     <input placeholder="搜索"/>
     <div class="right-actions">
-      <div class="action" v-on="click: toggleDashboard">仪表盘</div>
+      <div 
+        id="dashboard-action"
+        class="action"
+        v-on="click: toggleDashboard">仪表盘</div>
       <div class="action user">
         {{user.username}}
         <i title="退出"

@@ -3,11 +3,12 @@
 <div id="editor-toolbar"
      style="display: none;"
      v-class="float: floatBar">
-  <a data-wysihtml5-command="bold"><i class="fa fa-bold"></i></a>
-  <a data-wysihtml5-command="italic"><i class="fa fa-italic"></i></a>
-  <a data-wysihtml5-command="underline"><i class="fa fa-underline"></i></a>
+  <a data-wysihtml5-command="bold" title="加粗"><i class="fa fa-bold"></i></a>
+  <a data-wysihtml5-command="italic" title="斜体"><i class="fa fa-italic"></i></a>
+  <a data-wysihtml5-command="underline" title="下划线"><i class="fa fa-underline"></i></a>
 
   <a class="drop-down-command"
+     title="段落"
      v-on="mouseover: showFontList = true,
            mouseleave: showFontList = false">
     <i class="fa fa-header"></i>
@@ -57,6 +58,7 @@
   </a>
 
   <a class="drop-down-command"
+     title="颜色"
      v-on="mouseover: showColorPicker = true,
            mouseleave: showColorPicker = false">
     <i class="fa fa-eraser"></i>
@@ -85,20 +87,20 @@
     </ul>
   </a>
 
-  <a data-wysihtml5-command="justifyCenter"><i class="fa fa-align-center"></i></a>
-  <a data-wysihtml5-command="justifyLeft"><i class="fa fa-align-left"></i></a>
-  <a data-wysihtml5-command="justifyRight"><i class="fa fa-align-right"></i></a>
-  <a data-wysihtml5-command="insertUnOrderedList">
+  <a data-wysihtml5-command="justifyCenter" title="居中"><i class="fa fa-align-center"></i></a>
+  <a data-wysihtml5-command="justifyLeft" title="居左"><i class="fa fa-align-left"></i></a>
+  <a data-wysihtml5-command="justifyRight" title="居右"><i class="fa fa-align-right"></i></a>
+  <a data-wysihtml5-command="insertUnOrderedList" title="无序列表">
     <i class="fa fa-list-ul"></i>
   </a>
-  <a data-wysihtml5-command="insertOrderedList">
+  <a data-wysihtml5-command="insertOrderedList" title="有序列表">
     <i class="fa fa-list-ol"></i>
   </a>
 
 
   <!--Command needs dialog-->
-  <a data-wysihtml5-command="createLink"><i class="fa fa-link"></i></a>
-  <a data-wysihtml5-command="insertImage"><i class="fa fa-image"></i></a>
+  <a data-wysihtml5-command="createLink"><i class="fa fa-link" title="插入链接"></i></a>
+  <a data-wysihtml5-command="insertImage"><i class="fa fa-image" title="插入图片"></i></a>
 
   <!--Dialogs-->
   <div class="editor-dialog" data-wysihtml5-dialog="createLink" style="display: none;">

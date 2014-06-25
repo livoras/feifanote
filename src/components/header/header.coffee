@@ -14,3 +14,9 @@ Vue.component 'f-header',
         success: ->
           console.log "Logout success."
           window.location.reload()
+  created: ->
+    action = @$el.querySelector("#dashboard-action")
+    new Opentip action, "快捷键：Ctrl + `", 
+      delay: 0
+      background: "#fff"
+      borderColor: "#eee"
