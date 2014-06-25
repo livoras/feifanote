@@ -102,3 +102,17 @@ databus.modifyNotebookName = (notebook, success, error)->
       success?data
     error: (msg, status)->
       error?(msg, status)
+
+databus.checkEmailAvailability = (email, okFn, failFn)->
+  ajax 
+    url: "/users/check_email_availability/#{email}",
+    type: "GET"
+    success: okFn
+    error: failFn
+
+databus.checkUsernameAvailability = (username, okFn, failFn)->
+  ajax 
+    url: "/users/check_username_availability/#{username}",
+    type: "GET"
+    success: okFn
+    error: failFn

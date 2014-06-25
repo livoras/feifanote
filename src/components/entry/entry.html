@@ -17,8 +17,17 @@
         <span class="key">邮箱</span> 
         <input type="email"
                placeholder="example@mail.com" 
-               v-model="signupData.email">
+               v-model="signupData.email"
+               v-on="blur: checkEmailAvailability">
         <span class="notification">
+          <i v-show="emailStatus !== undefined" 
+             v-class="
+               fa-check: emailStatus === 'ok',
+               fa-times: emailStatus === 'used',
+               fa-spinner: emailStatus === 'loading',
+               fa-spin: emailStatus === 'loading'"
+             class="fa">
+          </i>
           <span>{{emailNotification}}</span>
         </span>
       </label>
@@ -26,8 +35,17 @@
         <span class="key">用户名</span>
         <input type="text" 
                placeholder="4~30 个字符"
-               v-model="signupData.username">
+               v-model="signupData.username"
+               v-on="blur: checkUsernameAvailability">
         <span class="notification">
+          <i v-show="usernameStatus !== undefined" 
+             v-class="
+               fa-check: usernameStatus === 'ok',
+               fa-times: usernameStatus === 'used',
+               fa-spinner: usernameStatus === 'loading',
+               fa-spin: usernameStatus === 'loading'"
+             class="fa">
+          </i>
           <span>{{usernameNotification}}</span>
         </span>
       </label>
@@ -38,9 +56,16 @@
                v-model="signupData.password"
                v-on="keydown: enterToSignup">
         <span class="notification">
+          <i v-show="isPasswordValid !== undefined" 
+             v-class="
+               fa-times: !isPasswordValid,
+               fa-check: isPasswordValid"
+             class="fa">
+          </i>
           <span>{{passwordNotification}}</span>
         </span>
       </label>
+      <div class="alarm" v-show="signupFormAlarm">{{signupFormAlarm}}</div>
       <button v-on="click: signup">马上注册</button>
       <a class="router" 
          v-on="click: signupFormShow = false">已有账号，直接登陆 >></a>
@@ -60,6 +85,9 @@
                v-model="loginData.password"
                v-on="keydown: enterToLogin">
       </label>
+      <div class="alarm" v-show="loginAlarmShow">
+        邮箱或者密码不正确
+      </div>
       <a class="router" 
          v-on="click: signupFormShow = true"><< 返回注册</a>
       <button v-on="click: login(loginData, this)">登陆</button>
