@@ -5,3 +5,16 @@
      -o-transition: @type @time @ease-type;
         transition: @type @time @ease-type;
 }
+
+.button () {
+  .transition();
+  padding: 0 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #f8f8f8;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+  }
+}

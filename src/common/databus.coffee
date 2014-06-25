@@ -116,3 +116,11 @@ databus.checkUsernameAvailability = (username, okFn, failFn)->
     type: "GET"
     success: okFn
     error: failFn
+
+databus.sendFeedback = (data, okFn, failFn)->
+  ajax 
+    url: "/feedbacks",
+    type: "POST"
+    data: data
+    success: okFn
+    error: failFn

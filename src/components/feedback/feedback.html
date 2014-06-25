@@ -1,0 +1,13 @@
+<div class="feedback-prompt" v-on="click: showFeedback">
+  <i class="fa fa-paper-plane"></i>
+</div>
+
+<div class="feedback" v-transition v-show="isFeedbackShow">
+  <textarea 
+    v-attr="placeholder: placeholder"
+    v-model="content"></textarea>
+  <div class="buttons">
+    <button v-on="click: hideFeedback">取消</button>
+    <button v-on="click: send">发送</button>
+  </div>
+</div>

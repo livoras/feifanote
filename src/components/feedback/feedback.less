@@ -1,0 +1,62 @@
+@import "../../common/common.less";
+
+div.feedback {
+  .transition();
+  border: 1px solid #C7C7C7;
+  position: fixed;
+  margin: auto;
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  @width: 300px;
+  @height: 160px;
+  height: @height;
+  width: @width;
+  background-color: #fff;
+  box-shadow: 0 0 10px #DDDDDD;
+  padding-top: 10px;
+  &.v-leave, &.v-enter {
+    right: -350px;
+  }
+  textarea {
+    outline: none;
+    border: 1px solid #C7C7C7;
+    margin-top: 5px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    font-size: 13px;
+    display: block; 
+    margin: 0 auto;
+    padding: 5px;
+    width: @width - 2 * 10px - 10px;
+    height: 100px;
+    resize: none;
+  }
+  div.buttons {
+    margin-top: 10px;
+    button {
+      .button();
+      font-size: 12px;
+      float: right;
+      margin-right: 10px;
+    }
+  }
+}
+
+div.feedback-prompt {
+  position: fixed;
+  margin: auto;
+  border-radius: 4px;
+  top: 0;
+  bottom: 0;
+  right: -3px;
+  @height: 60px;
+  height: @height;
+  border: 1px solid #ededed;
+  background: #fff;
+  line-height: @height - 7px;
+  padding: 0 3px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #C7C7C7;
+}

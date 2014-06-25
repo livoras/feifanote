@@ -53,12 +53,18 @@ module.exports = (grunt)->
     uglify:
       build:
         files:
-          'dist/build.min.js': ['bin/**/*.js']
+          'dist/build.min.js': [
+            'lib/vue.min.js', 
+            'lib/parser_rules/advanced.js',
+            'lib/opentip-native.min.js', 
+            'lib/wysihtml5-0.3.0.min.js', 
+            'bin/**/*.js'
+          ]
 
     cssmin:    
       build:
         files:
-          'dist/style.min.css': ['bin/style.css']
+          'dist/style.min.css': ['lib/opentip.css', 'bin/style.css']
 
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-clean'
