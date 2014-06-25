@@ -43,6 +43,9 @@ Vue.component 'f-dashboard',
 
     createNewPage: ->
       activeNotebook = @activeNotebook
+      if activeNotebook.pages.length >= @user.pages_limitation
+        alert "你最多只能创建#{@user.pages_limitation}页"
+        return
       databus.createNewPage activeNotebook, (page)->
         log.debug "Page created, ok"
         activeNotebook.pages.push(page)
@@ -52,6 +55,9 @@ Vue.component 'f-dashboard',
           log.debug "Page activated, ok."
 
     createNewNotebook: ->
+      if @notebooks.length >= @user.notebooks_limitation
+        alert "你最多只能创建#{@user.notebooks_limitation}本笔记"
+        return
       notebook = 
         editMode: yes
         pages: null 
@@ -136,7 +142,9 @@ modifyNotebookName = (vm, input)->
     vm.editMode = no
     log.debug "Notebook name saved."
   , (msg, status)->
-    alert msg
+    if msg is "Name has already existed."
+      alert "笔记名已经存在，请选择另外的名字"
+    else alert msg
     input.focus()
 
 reActivatePage = (activeNotebook, activePage, toDeleteId, callback)->  

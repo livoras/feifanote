@@ -1,4 +1,5 @@
 entryTpl = require './entry.html'
+promptTpl = require './prompt.html'
 {ajax, eventbus, databus} = wuyinote.common
 
 login = (user, vm)=>
@@ -21,6 +22,8 @@ signup = (vm)->
     type: "POST"
     data: vm.signupData
     success: (data)=>
+      wuyinote.common.isFirstLogin = yes
+      wuyinote.common.firstLoginTpl = promptTpl
       login vm.signupData, vm
     error: (msg, status)->  
       alert status + ': ' + msg

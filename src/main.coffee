@@ -17,7 +17,12 @@ loadNotebooksStatus = (callback)->
     activeNotebook = _.find notebooks, {id: appStatus.user.active_notebook_id}
     databus.loadPages activeNotebook, (pages)-> 
       activeNotebook.pages = pages
+      patchIfFirstLogin pages[0]
       callback?()
+
+patchIfFirstLogin = (page)->
+  if wuyinote.common.isFirstLogin
+    page.content = wuyinote.common.firstLoginTpl
 
 initActive = ->  
   appStatus = appStatus

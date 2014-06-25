@@ -1,4 +1,5 @@
 headerTpl = require './header.html'
+logoTpl = require './logo-info.html'
 {ajax} = wuyinote.common
 
 Vue.component 'f-header',
@@ -15,8 +16,26 @@ Vue.component 'f-header',
           console.log "Logout success."
           window.location.reload()
   created: ->
-    action = @$el.querySelector("#dashboard-action")
-    new Opentip action, "快捷键：Ctrl + `", 
-      delay: 0
-      background: "#fff"
-      borderColor: "#eee"
+    setDefaultStyle()
+    dashboardActionShortcut @
+    setTimeout => logoInfo @
+
+dashboardActionShortcut = (vm)->
+  action = vm.$el.querySelector("#dashboard-action")
+  new Opentip action, "快捷键：Ctrl + `"
+
+logoInfo = (vm)->
+  logo = vm.$el.querySelector("div.logo")
+  logoTpl = logoTpl.replace("notebooksLimitation", vm.user.notebooks_limitation)
+  logoTpl = logoTpl.replace("pagesLimitation", vm.user.pages_limitation)
+  new Opentip logo, logoTpl, {target: null}
+
+setDefaultStyle = ->
+  Opentip.styles.wuyinote = 
+    target: true
+    delay: 0
+    tipJoint: "bottom"
+    background: "#fff"
+    borderColor: "#eee"
+
+  Opentip.defaultStyle = "wuyinote"
