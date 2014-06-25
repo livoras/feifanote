@@ -19,7 +19,7 @@
                placeholder="example@mail.com" 
                v-model="signupData.email">
         <span class="notification">
-          <i class="fa fa-"></i>
+          <span>{{emailNotification}}</span>
         </span>
       </label>
       <label>
@@ -27,6 +27,9 @@
         <input type="text" 
                placeholder="4~30 个字符"
                v-model="signupData.username">
+        <span class="notification">
+          <span>{{usernameNotification}}</span>
+        </span>
       </label>
       <label>
         <span class="key">密码</span>
@@ -34,6 +37,9 @@
                placeholder="6~30 位密码"
                v-model="signupData.password"
                v-on="keydown: enterToSignup">
+        <span class="notification">
+          <span>{{passwordNotification}}</span>
+        </span>
       </label>
       <button v-on="click: signup">马上注册</button>
       <a class="router" 
