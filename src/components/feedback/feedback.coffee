@@ -1,7 +1,7 @@
 feedbackTpl = require './feedback.html'
 {ajax, eventbus, databus} = wuyinote.common
 
-PLACEHOLDER_DEFAULT = "期待你的宝贵意见！"
+PLACEHOLDER_DEFAULT = "Hi，期待你的意见。"
 
 Vue.component 'f-feedback',
   template: feedbackTpl

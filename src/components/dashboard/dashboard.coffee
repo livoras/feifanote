@@ -46,13 +46,20 @@ Vue.component 'f-dashboard',
       if activeNotebook.pages.length >= @user.pages_limitation
         alert "你最多只能创建#{@user.pages_limitation}页"
         return
-      databus.createNewPage activeNotebook, (page)->
+      page = 
+        id: null
+        index: activeNotebook.pages.length + 1
+        content: ""
+        notebook_id: null
+      activeNotebook.pages.push page
+      databus.createNewPage activeNotebook, (newPage)->
         log.debug "Page created, ok"
-        activeNotebook.pages.push(page)
+        _.extend page, newPage
         activeNotebook.active_page_id = page.id
         eventbus.emit "active-page-change"
         databus.makePageActive activeNotebook, page, ->
           log.debug "Page activated, ok."
+      , page.index
 
     createNewNotebook: ->
       if @notebooks.length >= @user.notebooks_limitation
